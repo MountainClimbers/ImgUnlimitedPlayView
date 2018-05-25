@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-/*
- _flag = 0
- 
- _flag--
- if _flag< 0
- _flag = imageArr.count - 1
- qian _flag--
- */
+
 typedef void(^Block)(NSInteger flag);
 
 @interface ImgUnlimitedPlayTwoView : UIView
+
 - (instancetype)initWithFrame:(CGRect)frame withImageArr:(NSArray *)imageArr;
 @property (nonatomic, copy) Block block;
+@property (nonatomic, strong) UIColor *currentPageColor;
+@property (nonatomic, strong) UIColor *pageColor;
+
 @end

@@ -7,6 +7,10 @@
 //
 
 #import "ImgUnlimitedPlayTwoView.h"
+
+static const CGFloat kWidth = 300.0;
+static const CGFloat kHeight = 150.0;
+
 @interface ImgUnlimitedPlayTwoView()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollVi;
@@ -16,6 +20,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 
 @end
+
 @implementation ImgUnlimitedPlayTwoView
 
 - (instancetype)initWithFrame:(CGRect)frame withImageArr:(NSArray *)imageArr{
@@ -23,69 +28,84 @@
     if (self = [super initWithFrame:frame]) {
         _imageArray = [NSMutableArray arrayWithArray:imageArr];
         [self setUpView];
-        
     }
-    
     return self;
 }
 
 - (void)setUpView {
     
-    _scrollVi = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
+    _scrollVi = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight)];
     _scrollVi.pagingEnabled = YES;
     _scrollVi.showsVerticalScrollIndicator = NO;
     _scrollVi.showsHorizontalScrollIndicator = NO;
     _scrollVi.delegate = self;
-    [_scrollVi setContentSize:CGSizeMake(900, 150)];
+    [_scrollVi setContentSize:CGSizeMake(900, kHeight)];
     [self addSubview:_scrollVi];
 
     for (NSInteger i= 0; i < 3; i++) {
  
-        UIButton *imgBtn = [[UIButton alloc] initWithFrame:CGRectMake(300 * i, 0, 300, 150)];
-        [imgBtn addTarget:self action:@selector(imgBtnTap:) forControlEvents:UIControlEventTouchUpInside];
-        if (i == 0) {
-            [imgBtn setImage:[UIImage imageNamed:_imageArray.lastObject] forState:UIControlStateNormal];
-
-        } else {
-            [imgBtn setImage:[UIImage imageNamed:_imageArray[i]] forState:UIControlStateNormal];
-
+        UIButton *imgBtn = [[UIButton alloc] initWithFrame:CGRectMake(kWidth * i, 0, kWidth, kHeight)];
+        imgBtn.tag = i;
+        if (imgBtn.tag == 1) {
+            [imgBtn addTarget:self action:@selector(imgBtnTap:) forControlEvents:UIControlEventTouchUpInside];
         }
+
         [_scrollVi addSubview:imgBtn];
     }
     
-    _pageControl = [[UIPageControl alloc] init];
-    _pageControl.frame = CGRectMake(25, 120, 250, 30);
-    _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-    _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(25, 120, 250, 30)];
     _pageControl.numberOfPages = _imageArray.count;
+    _pageControl.currentPageIndicatorTintColor = _currentPageColor != nil ? _currentPageColor : [UIColor redColor];
+    _pageControl.pageIndicatorTintColor = _pageColor != nil ? _pageColor : [UIColor whiteColor];
     [self addSubview:_pageControl];
 
+    /*
+     0 1 2 3 4
+     
+     4 0 1
+     0 1 2
+     1 2 3
+     3 4 0
+     */
+    _flag = 0;
+    
+    [self refreshData:_flag];
+   
     [self starTimer];
+   
+}
+
+#pragma mark - timer
+- (void)starTimer {
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timeFunction) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    }
     
 }
 
-- (void)starTimer {
-    if (!_timer) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timeFunction) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
-    }
+//设置pageControl的CurrentPageColor
+- (void)setCurrentPageColor:(UIColor *)currentPageColor {
+    _currentPageColor = currentPageColor;
+    self.pageControl.currentPageIndicatorTintColor = currentPageColor;
 }
-
-- (void)stopTimer {
-        [_timer invalidate];
-        _timer = nil;
+//设置pageControl的pageColor
+- (void)setPageColor:(UIColor *)pageColor {
+    _pageColor = pageColor;
+    self.pageControl.pageIndicatorTintColor = pageColor;
 }
 
 - (void)timeFunction {
-    _flag++;
-    if (_flag == _imageArray.count) {
-        _flag = 0;
-    }
-    /*
-     到下一页去了
-     */
-    [_scrollVi setContentOffset:CGPointMake(2 * 300, 0) animated:YES];
+    
+    [_scrollVi setContentOffset:CGPointMake(2 * kWidth, 0) animated:YES];
+    
+}
 
+- (void)stopTimer {
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
     
 }
 
@@ -94,6 +114,7 @@
         _block(_flag);
     }
 }
+
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self stopTimer];
@@ -107,14 +128,123 @@
     
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+/*
+ -1 _imageArray.count-1
+ -2 _imageArray.count-2
+ -3 _imageArray.count-3
+ -4 _imageArray.count-4
+ -5 _imageArray.count-5
+ -6
+ -7
+ -8
+ 
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ */
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {//自动检测scrollView是否滑动结束
+    //滑动结束惯性
+    if (scrollView.contentOffset.x == 2 * kWidth) {
+        _flag = _flag + 1;
+    } else if (scrollView.contentOffset.x == 0 * kWidth) {
+        _flag = _flag - 1;
+    }
+  
+    if (_flag < 0) {
+        _flag = (-1 * _flag) % (_imageArray.count);
+        _flag = _imageArray.count - _flag;
+    } else {
+        _flag = _flag % (_imageArray.count);
+    }
+    _pageControl.currentPage = _flag;
+    [self refreshData:_flag];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {//手动滑动结束
+
+    //滑动结束惯性
+    if (scrollView.contentOffset.x == 2 * kWidth) {
+        _flag = _flag + 1;
+    } else if (scrollView.contentOffset.x == 0 * kWidth) {
+        _flag = _flag - 1;
+    }
+ 
+    if (_flag < 0) {
+        _flag = (-1 * _flag) % (_imageArray.count);
+        _flag = _imageArray.count - _flag;
+    } else {
+        _flag = _flag % (_imageArray.count);
+    }
+    _pageControl.currentPage = _flag;
+    [self refreshData:_flag];
+
+}
+
+- (void)refreshData:(NSInteger)flag {
+  
+    if (flag == 0) {
+        NSInteger i = 0;
+        for (UIView *view in _scrollVi.subviews) {
+            UIButton *imgBtn = (UIButton *)view;
+            
+            if (imgBtn.tag == 0) {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray.lastObject] forState:UIControlStateNormal];
+            } else if(imgBtn.tag == 1) {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag]] forState:UIControlStateNormal];
+                
+            } else {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag+1]] forState:UIControlStateNormal];
+            }
+            
+            i++;
+        }
+    _scrollVi.contentOffset = CGPointMake(kWidth * 1, 0);
+    }
+    else if (flag == _imageArray.count - 1 ){
+        NSInteger i = 0;
+        for (UIView *view in _scrollVi.subviews) {
+            UIButton *imgBtn = (UIButton *)view;
+            
+            if (imgBtn.tag == 0) {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag-1]] forState:UIControlStateNormal];
+            } else if(imgBtn.tag == 1) {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag]] forState:UIControlStateNormal];
+                
+            } else {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray.firstObject] forState:UIControlStateNormal];
+            }
+            
+            i++;
+        }
+        _scrollVi.contentOffset = CGPointMake(kWidth * 1, 0);
+    }
+    else if (flag > 0 && flag < _imageArray.count - 1){
+        NSInteger i = 0;
+        for (UIView *view in _scrollVi.subviews) {
+            UIButton *imgBtn = (UIButton *)view;
+            
+            if (imgBtn.tag == 0) {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag-1]] forState:UIControlStateNormal];
+            } else if(imgBtn.tag == 1) {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag]] forState:UIControlStateNormal];
+                
+            } else {
+                [imgBtn setImage:[UIImage imageNamed:_imageArray[flag+1]] forState:UIControlStateNormal];
+            }
+            
+            i++;
+        }
+        _scrollVi.contentOffset = CGPointMake(kWidth * 1, 0);
+    } else {
+        
+    }
+    
+    
     
 }
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
-
-}
-
 
 @end

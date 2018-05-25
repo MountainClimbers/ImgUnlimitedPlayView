@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC8D3C3B20B79CDF008AA8CA /* ImgUnlimitedPlayTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D3C3920B79CDC008AA8CA /* ImgUnlimitedPlayTwoView.m */; };
 		FCA2CC1B20B6582D00124256 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC1A20B6582D00124256 /* AppDelegate.m */; };
 		FCA2CC1E20B6582D00124256 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC1D20B6582D00124256 /* ViewController.m */; };
 		FCA2CC2120B6582D00124256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA2CC1F20B6582D00124256 /* Main.storyboard */; };
@@ -15,7 +16,6 @@
 		FCA2CC2920B6583000124256 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC2820B6583000124256 /* main.m */; };
 		FCA2CC3320B6583100124256 /* CycleImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC3220B6583100124256 /* CycleImageTests.m */; };
 		FCA2CC3E20B6583100124256 /* CycleImageUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC3D20B6583100124256 /* CycleImageUITests.m */; };
-		FCA2CC4E20B6588A00124256 /* ScrollViewCycleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC4D20B6588A00124256 /* ScrollViewCycleImage.m */; };
 		FCA2CC5120B65A2500124256 /* ImgUnlimitedPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC5020B65A2500124256 /* ImgUnlimitedPlayView.m */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC8D3C3920B79CDC008AA8CA /* ImgUnlimitedPlayTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgUnlimitedPlayTwoView.m; sourceTree = "<group>"; };
+		FC8D3C3A20B79CDF008AA8CA /* ImgUnlimitedPlayTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgUnlimitedPlayTwoView.h; sourceTree = "<group>"; };
+		FC8D3C3C20B7C009008AA8CA /* UtilsMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
 		FCA2CC1620B6582D00124256 /* CycleImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CycleImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA2CC1920B6582D00124256 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FCA2CC1A20B6582D00124256 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,8 +56,6 @@
 		FCA2CC3920B6583100124256 /* CycleImageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CycleImageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA2CC3D20B6583100124256 /* CycleImageUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleImageUITests.m; sourceTree = "<group>"; };
 		FCA2CC3F20B6583100124256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCA2CC4C20B6588A00124256 /* ScrollViewCycleImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewCycleImage.h; sourceTree = "<group>"; };
-		FCA2CC4D20B6588A00124256 /* ScrollViewCycleImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewCycleImage.m; sourceTree = "<group>"; };
 		FCA2CC4F20B65A2500124256 /* ImgUnlimitedPlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImgUnlimitedPlayView.h; sourceTree = "<group>"; };
 		FCA2CC5020B65A2500124256 /* ImgUnlimitedPlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImgUnlimitedPlayView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +118,7 @@
 				FCA2CC2420B6583000124256 /* LaunchScreen.storyboard */,
 				FCA2CC2720B6583000124256 /* Info.plist */,
 				FCA2CC2820B6583000124256 /* main.m */,
+				FC8D3C3C20B7C009008AA8CA /* UtilsMacro.h */,
 			);
 			path = CycleImage;
 			sourceTree = "<group>";
@@ -142,8 +144,8 @@
 		FCA2CC4B20B6584F00124256 /* ScrollViewCycleImage */ = {
 			isa = PBXGroup;
 			children = (
-				FCA2CC4C20B6588A00124256 /* ScrollViewCycleImage.h */,
-				FCA2CC4D20B6588A00124256 /* ScrollViewCycleImage.m */,
+				FC8D3C3A20B79CDF008AA8CA /* ImgUnlimitedPlayTwoView.h */,
+				FC8D3C3920B79CDC008AA8CA /* ImgUnlimitedPlayTwoView.m */,
 				FCA2CC4F20B65A2500124256 /* ImgUnlimitedPlayView.h */,
 				FCA2CC5020B65A2500124256 /* ImgUnlimitedPlayView.m */,
 			);
@@ -283,8 +285,8 @@
 				FCA2CC1E20B6582D00124256 /* ViewController.m in Sources */,
 				FCA2CC2920B6583000124256 /* main.m in Sources */,
 				FCA2CC5120B65A2500124256 /* ImgUnlimitedPlayView.m in Sources */,
-				FCA2CC4E20B6588A00124256 /* ScrollViewCycleImage.m in Sources */,
 				FCA2CC1B20B6582D00124256 /* AppDelegate.m in Sources */,
+				FC8D3C3B20B79CDF008AA8CA /* ImgUnlimitedPlayTwoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

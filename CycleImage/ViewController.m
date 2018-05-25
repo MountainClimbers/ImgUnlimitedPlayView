@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "ImgUnlimitedPlayView.h"
+
+#import "ImgUnlimitedPlayTwoView.h"
 
 @interface ViewController ()
 
 @end
+
 
 @implementation ViewController
 
@@ -19,13 +21,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSArray *array = @[@"0",@"1",@"2",@"3",@"4"];
-    ImgUnlimitedPlayView *imgUnlimitedPlayView = [[ImgUnlimitedPlayView alloc] initWithFrame:CGRectMake(50, 100, 300, 150) withImageArr:array];
-    
+    NSArray *array = @[@"0",@"1",@"2",@"3",@"4",@"4",@"3",@"2",@"1",@"0"];
+    ImgUnlimitedPlayTwoView *imgUnlimitedPlayView = [[ImgUnlimitedPlayTwoView alloc] initWithFrame:CGRectMake(50, 100, 300, 150) withImageArr:array];
+    imgUnlimitedPlayView.currentPageColor = [UIColor blueColor];
     imgUnlimitedPlayView.block = ^(NSInteger flag) {
-        
+
         NSLog(@"点击了第%ld张图片",flag + 1);
-      
+
     };
     
     [self.view addSubview:imgUnlimitedPlayView];

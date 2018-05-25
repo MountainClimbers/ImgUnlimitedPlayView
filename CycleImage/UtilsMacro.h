@@ -9,5 +9,7 @@
 #ifndef UtilsMacro_h
 #define UtilsMacro_h
 
+#define kScreenWidth 
 
 #endif /* UtilsMacro_h */
+
