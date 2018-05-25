@@ -62,13 +62,12 @@ static const CGFloat kHeight = 150.0;
     /*
      0 1 2 3 4
      
-     4 0 1
+     4 0 1 中间显示的是第一张
      0 1 2
      1 2 3
      3 4 0
      */
     _flag = 0;
-    
     [self refreshData:_flag];
    
     [self starTimer];
@@ -128,24 +127,6 @@ static const CGFloat kHeight = 150.0;
     
 }
 
-/*
- -1 _imageArray.count-1
- -2 _imageArray.count-2
- -3 _imageArray.count-3
- -4 _imageArray.count-4
- -5 _imageArray.count-5
- -6
- -7
- -8
- 
- 1
- 2
- 3
- 4
- 5
- 6
- 7
- */
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {//自动检测scrollView是否滑动结束
     //滑动结束惯性
     if (scrollView.contentOffset.x == 2 * kWidth) {
