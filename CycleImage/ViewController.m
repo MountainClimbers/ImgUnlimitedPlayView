@@ -39,6 +39,12 @@
     [btn setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
 //    [btn addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    
+    //oc UIButton
+    UIButton *btn2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 350, 100, 50)];
+    [btn2 setTitle:@"暂停线程" forState:UIControlStateNormal];
+    [btn2 setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
+    [self.view addSubview:btn2];
 }
 
 
