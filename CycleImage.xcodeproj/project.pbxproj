@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		992B3BCE214E1743004B118D /* AdHocExportOptionsPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992B3BC9214E1743004B118D /* AdHocExportOptionsPlist.plist */; };
+		992B3BCF214E1743004B118D /* AppStoreExportOptionsPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992B3BCA214E1743004B118D /* AppStoreExportOptionsPlist.plist */; };
+		992B3BD0214E1743004B118D /* DevelopmentExportOptionsPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992B3BCB214E1743004B118D /* DevelopmentExportOptionsPlist.plist */; };
+		992B3BD1214E1743004B118D /* EnterpriseExportOptionsPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 992B3BCC214E1743004B118D /* EnterpriseExportOptionsPlist.plist */; };
+		992B3BD2214E1743004B118D /* PPAutoPackageScript.sh in Resources */ = {isa = PBXBuildFile; fileRef = 992B3BCD214E1743004B118D /* PPAutoPackageScript.sh */; };
 		FC8D3C3B20B79CDF008AA8CA /* ImgUnlimitedPlayTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D3C3920B79CDC008AA8CA /* ImgUnlimitedPlayTwoView.m */; };
 		FCA2CC1B20B6582D00124256 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC1A20B6582D00124256 /* AppDelegate.m */; };
 		FCA2CC1E20B6582D00124256 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA2CC1D20B6582D00124256 /* ViewController.m */; };
@@ -37,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		992B3BC9214E1743004B118D /* AdHocExportOptionsPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AdHocExportOptionsPlist.plist; sourceTree = "<group>"; };
+		992B3BCA214E1743004B118D /* AppStoreExportOptionsPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppStoreExportOptionsPlist.plist; sourceTree = "<group>"; };
+		992B3BCB214E1743004B118D /* DevelopmentExportOptionsPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DevelopmentExportOptionsPlist.plist; sourceTree = "<group>"; };
+		992B3BCC214E1743004B118D /* EnterpriseExportOptionsPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnterpriseExportOptionsPlist.plist; sourceTree = "<group>"; };
+		992B3BCD214E1743004B118D /* PPAutoPackageScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = PPAutoPackageScript.sh; sourceTree = "<group>"; };
 		FC8D3C3920B79CDC008AA8CA /* ImgUnlimitedPlayTwoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgUnlimitedPlayTwoView.m; sourceTree = "<group>"; };
 		FC8D3C3A20B79CDF008AA8CA /* ImgUnlimitedPlayTwoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgUnlimitedPlayTwoView.h; sourceTree = "<group>"; };
 		FC8D3C3C20B7C009008AA8CA /* UtilsMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsMacro.h; sourceTree = "<group>"; };
@@ -85,9 +95,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		992B3BC8214E1743004B118D /* PPAutoPackageScript */ = {
+			isa = PBXGroup;
+			children = (
+				992B3BC9214E1743004B118D /* AdHocExportOptionsPlist.plist */,
+				992B3BCA214E1743004B118D /* AppStoreExportOptionsPlist.plist */,
+				992B3BCB214E1743004B118D /* DevelopmentExportOptionsPlist.plist */,
+				992B3BCC214E1743004B118D /* EnterpriseExportOptionsPlist.plist */,
+				992B3BCD214E1743004B118D /* PPAutoPackageScript.sh */,
+			);
+			path = PPAutoPackageScript;
+			sourceTree = "<group>";
+		};
 		FCA2CC0D20B6582D00124256 = {
 			isa = PBXGroup;
 			children = (
+				992B3BC8214E1743004B118D /* PPAutoPackageScript */,
 				FCA2CC1820B6582D00124256 /* CycleImage */,
 				FCA2CC3120B6583100124256 /* CycleImageTests */,
 				FCA2CC3C20B6583100124256 /* CycleImageUITests */,
@@ -255,6 +278,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				992B3BD0214E1743004B118D /* DevelopmentExportOptionsPlist.plist in Resources */,
+				992B3BD2214E1743004B118D /* PPAutoPackageScript.sh in Resources */,
+				992B3BD1214E1743004B118D /* EnterpriseExportOptionsPlist.plist in Resources */,
+				992B3BCF214E1743004B118D /* AppStoreExportOptionsPlist.plist in Resources */,
+				992B3BCE214E1743004B118D /* AdHocExportOptionsPlist.plist in Resources */,
 				FCA2CC2620B6583000124256 /* LaunchScreen.storyboard in Resources */,
 				FCA2CC2320B6583000124256 /* Assets.xcassets in Resources */,
 				FCA2CC2120B6582D00124256 /* Main.storyboard in Resources */,

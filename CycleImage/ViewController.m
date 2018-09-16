@@ -31,6 +31,14 @@
     };
     
     [self.view addSubview:imgUnlimitedPlayView];
+    
+    
+    //oc UIButton
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 400, 100, 50)];
+    [btn setTitle:@"开始线程" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
+//    [btn addTarget:self action:@selector(start:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
 
